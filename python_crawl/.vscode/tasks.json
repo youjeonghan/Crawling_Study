@@ -10,10 +10,10 @@
             "args": [
                 "${file}"
             ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            },
+            // "presentation": {
+            //     "reveal": "always",
+            //     "panel": "new"
+            // },
             "options": {
                 "env": {
                     "PYTHONIOENCODING": "UTF-8"
