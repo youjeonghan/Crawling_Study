@@ -15,29 +15,51 @@ def main():
     # 스크랩핑 대상 URL
     response = session.get("https://www.naver.com")  # Get, Post
 
-    # 신문사 링크 리스트 획득
+    # 신문사 링크 딕셔너리 획득
     urls = scrape_news_list_page(response)
 
+    # 딕셔너리 확인
+    # print(urls)
+
     # 결과 출력
-    for url in urls:
-        print(url)
+    for name, url in urls.items():
+        # url 출력
+        print(name, url)
         # 파일 쓰기
         # 생략
 
 
 def scrape_news_list_page(response):
-    # URL 리스트 선언
-    urls = []
+    # URL 딕셔너리 선언
+    urls = {}
 
     # 태그 정보 문자열 저장
     root = fromstring(response.content)
 
-    for a in root.cssselect(".group_news .thumb_area div.popup_wrap a.btn_popup[href*=http]"):
-        # 링크
-        url = a.get("href")
-        urls.append(url)
+    for a in root.xpath(
+        '//div[@class="thumb_area"]/div[@class="thumb_box _NM_NEWSSTAND_THUMB _NM_NEWSSTAND_THUMB_press_valid"]'
+    ):
+        # a 구조 확인
+        # print(a)
+
+        # a 문자열 출력
+        # print(tostring(a, pretty_print=True))
+
+        name, url = extract_contents(a)
+        # 딕셔너리 삽입
+        urls[name] = url
 
     return urls
+
+
+def extract_contents(dom):
+    # 링크 주소
+    link = dom.xpath('./div[@class="popup_wrap"]/a[@class="btn_popup"]')[0].get("href")
+
+    # 신문사 명
+    name = dom.xpath('./a[@class="thumb"]/img')[0].get("alt")  # xpath('./img')
+
+    return name, link
 
 
 # 스크랩핑 시작
