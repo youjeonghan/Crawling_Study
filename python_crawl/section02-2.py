@@ -37,6 +37,7 @@ for i, url in enumerate(taeget_url):
     except HTTPError as e:
         print("Download failed.")
         print("HTTPError Code: ", e.code)
+
     except URLError as e:
         print("Download failed.")
         print("URL Error Code: ", e.reason)

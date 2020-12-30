@@ -1,3 +1,14 @@
 {
-    "python.pythonPath": "python_crawl\\Scripts\\python.exe", 
+    // pylint 적용
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    //black 적용
+    "python.pythonPath": "python_crawl\\Scripts\\python.exe",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "100"
+    ],
+    "editor.formatOnSave": true,
+    //
 }
