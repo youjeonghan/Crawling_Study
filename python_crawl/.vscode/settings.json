@@ -4,7 +4,7 @@
     "python.linting.enabled": true,
     //
     //black 적용
-    "python.pythonPath": "\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Dev\\Github\\Crawling_Study\\python_crawl\\Scripts\\python.exe",
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
         "--line-length",
