@@ -24,4 +24,17 @@ headers = {
 url = "https://finance.daum.net/api/search/ranks?limit=10"
 
 # 요청
-res = req.urlopen(req.Request(url, headers=headers))
+res = req.urlopen(req.Request(url, headers=headers)).read().decode("UTF-8")
+
+# 응답 데이터 확인 (Json Data)
+# print("res", res)
+
+# 응답 데이터 str -> json 변환 및 data 값 출력
+rank_json = json.loads(res)["data"]
+
+# 중간 확인
+# print("중간 확인 : ", rank_json, "\n")
+
+for elm in rank_json:
+    # print(type(elm))
+    print("순위 : {}, 금액 : {}, 회사명 : {}\n".format(elm["rank"], elm.get("tradePrice"), elm["name"]))
