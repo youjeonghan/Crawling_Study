@@ -38,3 +38,4 @@ rank_json = json.loads(res)["data"]
 for elm in rank_json:
     # print(type(elm))
     print("순위 : {}, 금액 : {}, 회사명 : {}\n".format(elm["rank"], elm.get("tradePrice"), elm["name"]))
+    # 파일 (csv, 엑셀, txt) 저장 및 db 저장
