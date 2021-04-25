@@ -29,6 +29,60 @@ print(r.text)
 # 쿠키 설정
 jar = requests.cookies.RequestsCookieJar()
 # 쿠키 삽입
-jar.set("유정한", "niceman", domain="httpbin.org", path="/cookies")
+jar.set("name", "youjeinghan", domain="httpbin.org", path="/cookies")
 
 # 요청
+r = s.get("http://httpbin.org/cookies", cookies=jar)
+
+# 출력
+print(r.text)
+
+# 예제3
+r = s.get("https://github.com", timeout=5)
+
+# 출력
+print(r.text)
+
+
+# 예제4
+r = s.post("http://httpbin.org/post", data={"id": "yjh9360", "pw": "1234"}, cookies=jar)
+
+# 출력
+print(r.text)
+print(r.headers)
+
+
+# 예제5
+# 요청(POST)
+# 튜플로도 가능
+payload1 = {"id": "yjh9360", "pw": "12345678"}
+payload2 = (("id", "yjh9360"), ("pw", "12345678"))
+
+r = s.post("http://httpbin.org/post", data=payload2)
+
+# 출력
+print(r.text)
+
+
+# 예제 6(PUT)
+r = s.put("http://httpbin.org/put", data=payload1)
+
+# 출력
+print(r.text)
+
+
+# 예제 7(DELETE)
+r = s.delete("http://httpbin.org/delete", data={"id": 1})
+
+# 출력
+print(r.text)
+
+# 예제 7_2(DELETE)
+r = s.delete("https://jsonplaceholder.typicode.com/posts/1")
+
+# 출력
+print(r.ok)
+print(r.text)
+print(r.headers)
+
+s.close
